@@ -313,7 +313,7 @@
             "refundProxy": "退款（服务端）",
             "markRefunded": "标记已退款",
             "refundConfirm": "这将在新标签页中打开退款页面。步骤：1. 在新标签页中完成退款 2. 在 Linux DO Credit 后台确认退款成功 3. 返回此处点击【标记已退款】继续？",
-            "refundProxyConfirm": "尝试通过服务端代理执行退款？（可能被 WAF 拦截）",
+            "refundProxyConfirm": "确认执行退款？",
             "refundProxyNotProcessed": "代理请求已返回但未确认成功；必要时请使用手动退款流程。",
             "refundVerify": "您是否已在 Linux DO Credit 后台确认退款成功？",
             "refundSuccess": "订单已标记为已退款",
@@ -322,7 +322,9 @@
             "checkStatus": "查询状态",
             "verifySuccessRefunded": "已查询到退款成功！",
             "verifyInfoPaid": "验证结果：订单支付正常（未退款）",
-            "verifyStatus": "状态验证"
+            "verifyStatus": "状态验证",
+            "proxyFailedTryManual": "服务端退款失败。尝试客户端手动退款？",
+            "tryManual": "客户端退款"
         },
         "cards": {
             "title": "库存管理",

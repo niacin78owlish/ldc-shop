@@ -313,7 +313,7 @@
             "refundProxy": "Refund (Server)",
             "markRefunded": "Mark Refunded",
             "refundConfirm": "This will open the refund page in a new tab.\n\nSteps:\n1. Complete the refund in the new tab\n2. Verify success in Linux DO Credit dashboard\n3. Return here and click \"Mark Refunded\"\n\nContinue?",
-            "refundProxyConfirm": "Attempt refund via server proxy? (May be blocked by WAF)",
+            "refundProxyConfirm": "Confirm refund?",
             "refundProxyNotProcessed": "Proxy request finished but not confirmed as success; use manual flow if needed.",
             "refundVerify": "Have you verified the refund was successful in the Linux DO Credit dashboard?",
             "refundSuccess": "Order marked as refunded",
@@ -322,7 +322,9 @@
             "checkStatus": "Check Status",
             "verifySuccessRefunded": "Refund verified successfully!",
             "verifyInfoPaid": "Verified: Order is Paid (Active).",
-            "verifyStatus": "Status Verified"
+            "verifyStatus": "Status Verified",
+            "proxyFailedTryManual": "Server refund failed. Try client-side refund?",
+            "tryManual": "Manual Refund"
         },
         "cards": {
             "title": "Manage Stock",

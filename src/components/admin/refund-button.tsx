@@ -16,8 +16,8 @@ export function RefundButton({ order }: { order: any }) {
     if (order.status !== 'delivered' && order.status !== 'paid') return null
     if (!order.tradeNo) return null
 
-    const handleRefund = async () => {
-        if (!confirm(t('admin.orders.refundConfirm'))) return
+    const handleClientRefund = async () => {
+        // if (!confirm(t('admin.orders.refundConfirm'))) return // No double confirm for fallback
 
         setLoading(true)
         try {
@@ -77,7 +77,7 @@ export function RefundButton({ order }: { order: any }) {
         }
     }
 
-    const handleProxyRefund = async () => {
+    const handleRefund = async () => {
         if (!confirm(t('admin.orders.refundProxyConfirm'))) return
         setLoading(true)
         try {
@@ -85,11 +85,25 @@ export function RefundButton({ order }: { order: any }) {
             if (result.processed) {
                 toast.success(t('admin.orders.verifySuccessRefunded'))
             } else {
-                toast.info(t('admin.orders.refundProxyNotProcessed'))
+                toast.error(t('admin.orders.refundProxyNotProcessed'), {
+                    action: {
+                        label: t('admin.orders.tryManual'),
+                        onClick: () => handleClientRefund()
+                    },
+                    duration: 8000
+                })
+                // Also show mark done if it was partial failure? 
+                // Currently proxyRefund returns processed: false if API said fail.
                 setShowMarkDone(true)
             }
         } catch (e: any) {
-            toast.error(e.message)
+            toast.error(e.message || "Refund failed", {
+                action: {
+                    label: t('admin.orders.tryManual'),
+                    onClick: () => handleClientRefund()
+                },
+                duration: 8000
+            })
         } finally {
             setLoading(false)
         }
@@ -140,9 +154,6 @@ export function RefundButton({ order }: { order: any }) {
             </Button>
             <Button variant="outline" size="sm" onClick={handleRefund} disabled={loading || showMarkDone}>
                 {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : <><ExternalLink className="h-3 w-3 mr-1" />{t('admin.orders.refund')}</>}
-            </Button>
-            <Button variant="outline" size="sm" onClick={handleProxyRefund} disabled={loading || showMarkDone}>
-                {loading ? <Loader2 className="h-3 w-3 animate-spin" /> : <><ExternalLink className="h-3 w-3 mr-1" />{t('admin.orders.refundProxy')}</>}
             </Button>
             {showMarkDone && (
                 <Button variant="default" size="sm" onClick={handleMarkDone} disabled={loading}>
