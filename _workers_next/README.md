@@ -88,44 +88,6 @@
 
 ---
 
-### 方式二：命令行部署 (CLI)
-
-适合熟悉命令行的开发者。
-
-#### 前置要求
-- Node.js & NPM
-- Wrangler CLI (`npm install -g wrangler`)
-
-#### 1. 初始化
-```bash
-cd _workers_next
-npm install
-```
-
-#### 2. 创建数据库
-```bash
-npx wrangler d1 create ldc-shop-next
-```
-复制输出的 `database_id`，填入 `wrangler.json`。
-
-#### 3. 配置环境变量
-```bash
-npx wrangler secret put OAUTH_CLIENT_ID
-npx wrangler secret put OAUTH_CLIENT_SECRET
-npx wrangler secret put MERCHANT_ID
-npx wrangler secret put MERCHANT_KEY
-npx wrangler secret put AUTH_SECRET
-npx wrangler secret put ADMIN_USERS
-npx wrangler secret put NEXT_PUBLIC_APP_URL
-```
-
-#### 4. 部署
-```bash
-npm run deploy
-```
-
----
-
 ## � 本地开发
 
 本地开发使用 SQLite 文件模拟 D1。
